@@ -15,12 +15,18 @@
         <action
             android:id="@+id/action_listFragment_to_expandedFragment"
             app:destination="@id/expandedFragment" />
+        <argument android:name="userId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/newCharacterFragment"
         android:name="com.utn.primerparciallauria.fragments.NewCharacterFragment"
         android:label="fragment_new_character"
-        tools:layout="@layout/fragment_new_character" />
+        tools:layout="@layout/fragment_new_character" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/expandedFragment"
         android:name="com.utn.primerparciallauria.fragments.ExpandedFragment"
@@ -53,6 +59,26 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_recoveryFragment"
+            app:destination="@id/recoveryFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_createAccFragment"
+            app:destination="@id/createAccFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recoveryFragment"
+        android:name="com.utn.primerparciallauria.fragments.RecoveryFragment"
+        android:label="fragment_recovery"
+        tools:layout="@layout/fragment_recovery" />
+    <fragment
+        android:id="@+id/createAccFragment"
+        android:name="com.utn.primerparciallauria.fragments.CreateAccFragment"
+        android:label="fragment_create_acc"
+        tools:layout="@layout/fragment_create_acc" >
+        <action
+            android:id="@+id/action_createAccFragment_to_listFragment"
             app:destination="@id/listFragment" />
     </fragment>
 </navigation>

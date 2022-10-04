@@ -6,11 +6,11 @@ import com.utn.primerparciallauria.entities.Character
 @Dao
 public interface characterDao {
 
-    @Query("SELECT * FROM characters ORDER BY characterId")
-    fun loadAllCharacters(): MutableList<Character?>?
+    @Query("SELECT * FROM characters WHERE userId = :userId ORDER BY characterId")
+    fun loadAllCharacters(userId : Int): MutableList<Character?>?
 
-    @Query("INSERT INTO characters (name, imgAvatar) VALUES (:name, :imgAvatar)")
-    fun addCharacter(name : String, imgAvatar : String)
+    @Query("INSERT INTO characters (userId, name, imgAvatar) VALUES (:userId, :name, :imgAvatar)")
+    fun addCharacter(userId : Int, name : String, imgAvatar : String)
 
     @Query("SELECT * FROM characters WHERE characterId = :characterId")
     fun getCharacter(characterId : Int) : Character?

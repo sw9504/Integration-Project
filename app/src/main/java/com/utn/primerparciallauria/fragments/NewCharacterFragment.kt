@@ -44,11 +44,13 @@ class NewCharacterFragment : Fragment() {
         db = appDatabase.getAppDataBase(v.context)
         characterDao = db?.characterDao()
 
+        var userId = NewCharacterFragmentArgs.fromBundle(requireArguments()).userId
+
         btnAdd.setOnClickListener {
             val name = inputName.text
             val url = inputUrl.text
 
-            characterDao?.addCharacter(name.toString(),url.toString())
+            characterDao?.addCharacter(userId, name.toString(),url.toString())
             v.findNavController().navigateUp()
         }
 

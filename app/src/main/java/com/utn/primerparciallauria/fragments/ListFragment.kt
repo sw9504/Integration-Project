@@ -50,7 +50,9 @@ class ListFragment : Fragment() {
             db = appDatabase.getAppDataBase(v.context)
             characterDao = db?.characterDao()
 
-            characterList = characterDao?.loadAllCharacters() as MutableList<Character>
+            var userId = ListFragmentArgs.fromBundle(requireArguments()).userId
+
+            characterList = characterDao?.loadAllCharacters(userId) as MutableList<Character>
 
             adapter = CharacterAdapter(characterList) { position ->
                 var action = ListFragmentDirections.actionListFragmentToExpandedFragment(characterList[position].characterId)
@@ -60,7 +62,7 @@ class ListFragment : Fragment() {
             recCharacter.adapter = adapter
 
             btnAdd.setOnClickListener {
-                var action = ListFragmentDirections.actionListFragmentToNewCharacterFragment()
+                var action = ListFragmentDirections.actionListFragmentToNewCharacterFragment(userId)
                 v.findNavController().navigate(action)
             }
         }

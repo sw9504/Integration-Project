@@ -3,10 +3,13 @@ package com.utn.primerparciallauria.entities
 import androidx.room.*
 
 @Entity(tableName = "characters")
-class Character(characterId : Int, name : String, imgAvatar : String) {
+class Character(characterId : Int, userId : Int, name : String, imgAvatar : String) {
     @PrimaryKey
     @ColumnInfo(name = "characterId")
     var characterId : Int
+
+    @ColumnInfo(name = "userId")
+    var userId : Int
 
     @ColumnInfo(name = "name")
     var name : String
@@ -16,6 +19,7 @@ class Character(characterId : Int, name : String, imgAvatar : String) {
 
     init {
         this.characterId = characterId
+        this.userId = userId
         this.name = name
         this.imgAvatar = imgAvatar
     }
