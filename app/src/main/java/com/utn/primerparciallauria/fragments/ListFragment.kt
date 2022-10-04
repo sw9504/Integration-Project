@@ -35,8 +35,8 @@ class ListFragment : Fragment() {
             v =  inflater.inflate(R.layout.fragment_list, container, false)
 
             // Si no pongo esto me desaparece la bottom bar al volver
-/*            val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
-            view.visibility = View.VISIBLE*/
+            val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
+            view.visibility = View.VISIBLE
 
             recCharacter = v.findViewById(R.id.recCharacter)
             btnAdd = v.findViewById(R.id.btnAdd)

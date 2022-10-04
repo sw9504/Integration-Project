@@ -34,9 +34,9 @@ class ExpandedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         v = inflater.inflate(R.layout.fragment_expanded, container, false)
-/*
+
         val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
-        view.visibility = View.GONE*/
+        view.visibility = View.GONE
 
         characterName = v.findViewById(R.id.characterName)
         btnEdit = v.findViewById(R.id.btnEdit)

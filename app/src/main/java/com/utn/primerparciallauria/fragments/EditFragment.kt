@@ -29,8 +29,8 @@ class EditFragment : Fragment() {
     ): View? {
         v =  inflater.inflate(R.layout.fragment_edit, container, false)
 
-/*        val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
-        view.visibility = View.GONE*/
+        val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
+        view.visibility = View.GONE
 
         inputName = v.findViewById(R.id.inputName)
         inputUrl = v.findViewById(R.id.inputUrl)
