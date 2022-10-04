@@ -15,6 +15,7 @@ import com.utn.primerparciallauria.R
 import com.utn.primerparciallauria.adapters.CharacterAdapter
 import com.utn.primerparciallauria.database.appDatabase
 import com.utn.primerparciallauria.database.characterDao
+import com.utn.primerparciallauria.database.userDao
 import com.utn.primerparciallauria.entities.Character
 
 class ListFragment : Fragment() {
