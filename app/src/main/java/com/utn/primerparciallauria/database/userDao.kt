@@ -13,4 +13,7 @@ public interface userDao {
 
     @Query("SELECT * FROM users WHERE userId = :userId")
     fun getUser(userId : Int) : User?
+
+    @Query("SELECT userId FROM users WHERE email = :email")
+    fun getUserId(email : String) : Int
 }

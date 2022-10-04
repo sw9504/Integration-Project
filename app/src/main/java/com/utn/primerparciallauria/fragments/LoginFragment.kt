@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -23,6 +24,9 @@ class LoginFragment : Fragment() {
     lateinit var txtUser : EditText
     lateinit var txtPass : EditText
     lateinit var btnLogin : Button
+
+    lateinit var txtRecovery : TextView
+    lateinit var txtCreateAcc : TextView
 
     private var db: appDatabase? = null
     private var userDao: userDao? = null
@@ -43,6 +47,9 @@ class LoginFragment : Fragment() {
         txtUser = v.findViewById(R.id.txtUser)
         txtPass = v.findViewById(R.id.txtPass)
 
+        txtRecovery = v.findViewById(R.id.txtRecovery)
+        txtCreateAcc = v.findViewById(R.id.txtCreateAcc)
+
         return v
     }
 
@@ -55,20 +62,32 @@ class LoginFragment : Fragment() {
         userList = userDao?.loadAllUsers() as MutableList<User>
 
         btnLogin.setOnClickListener {
-            var user = txtUser.text.toString()
+            var email = txtUser.text.toString()
             var pass = txtPass.text.toString()
 
             var newList = userList.filter { us ->
-                us.email == user && us.password == pass
+                us.email == email && us.password == pass
             }
+
 
             if (newList.isEmpty())
                 Snackbar.make(it,"Datos incorrectos", Snackbar.LENGTH_SHORT).show()
             else {
                 Snackbar.make(it,"Autenticado", Snackbar.LENGTH_SHORT).show()
-                val action = LoginFragmentDirections.actionLoginFragmentToListFragment()
+                var userId = userDao?.getUserId(email) as Int
+                val action = LoginFragmentDirections.actionLoginFragmentToListFragment(userId)
                 v.findNavController().navigate(action)
             }
+        }
+
+        txtRecovery.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToRecoveryFragment()
+            v.findNavController().navigate(action)
+        }
+
+        txtCreateAcc.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToCreateAccFragment()
+            v.findNavController().navigate(action)
         }
     }
 
