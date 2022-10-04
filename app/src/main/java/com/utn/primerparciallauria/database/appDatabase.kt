@@ -4,14 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.utn.primerparciallauria.entities.Character
 import com.utn.primerparciallauria.entities.User
 
-@Database(entities = [Character::class, User::class], version = 1, exportSchema = false)
+@Database(entities = [Character::class,User::class], version = 1, exportSchema = false)
 
 public  abstract class appDatabase : RoomDatabase() {
 
-    abstract fun userDao(): userDao
-    abstract fun characterDao(): characterDao
+    abstract fun characterDao() : characterDao
+    abstract fun userDao() : userDao
 
     companion object {
         var INSTANCE: appDatabase? = null
