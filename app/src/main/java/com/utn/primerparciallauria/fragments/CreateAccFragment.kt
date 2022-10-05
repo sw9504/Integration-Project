@@ -35,7 +35,7 @@ class CreateAccFragment : Fragment() {
         val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
         view.visibility = View.INVISIBLE
 
-        inputName = v.findViewById(R.id.inputEmail)
+        inputName = v.findViewById(R.id.inputName)
         inputEmail = v.findViewById(R.id.inputEmail)
         inputPassword = v.findViewById(R.id.inputPassword)
         btnCreate = v.findViewById(R.id.btnCreate)
@@ -49,7 +49,6 @@ class CreateAccFragment : Fragment() {
         db = appDatabase.getAppDataBase(v.context)
         userDao = db?.userDao()
         userList = userDao?.loadAllUsers() as MutableList<User>
-
 
         btnCreate.setOnClickListener {
             var name = inputName.text.toString()

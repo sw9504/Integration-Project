@@ -69,7 +69,6 @@ class LoginFragment : Fragment() {
                 us.email == email && us.password == pass
             }
 
-
             if (newList.isEmpty())
                 Snackbar.make(it,"Datos incorrectos", Snackbar.LENGTH_SHORT).show()
             else {

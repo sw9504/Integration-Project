@@ -74,6 +74,5 @@ class ListFragment : Fragment() {
                 var action = ListFragmentDirections.actionListFragmentToNewCharacterFragment(userId)
                 v.findNavController().navigate(action)
             }
-
         }
 }
