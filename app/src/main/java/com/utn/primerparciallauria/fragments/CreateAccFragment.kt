@@ -1,6 +1,5 @@
 package com.utn.primerparciallauria.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,7 +35,7 @@ class CreateAccFragment : Fragment() {
         val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
         view.visibility = View.INVISIBLE
 
-        inputName = v.findViewById(R.id.inputName)
+        inputName = v.findViewById(R.id.inputEmail)
         inputEmail = v.findViewById(R.id.inputEmail)
         inputPassword = v.findViewById(R.id.inputPassword)
         btnCreate = v.findViewById(R.id.btnCreate)

@@ -1,5 +1,7 @@
 package com.utn.primerparciallauria.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -22,5 +24,9 @@ class ProfileFragment : Fragment() {
         userWelcome = v.findViewById(R.id.userWelcome)
 
         return v
+    }
+
+    override fun onStart() {
+
     }
 }

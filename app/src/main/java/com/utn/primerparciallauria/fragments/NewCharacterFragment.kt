@@ -1,6 +1,5 @@
 package com.utn.primerparciallauria.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,9 +31,9 @@ class NewCharacterFragment : Fragment() {
         val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
         view.visibility = View.GONE
 
-        inputName = v.findViewById(R.id.inputName)
+        inputName = v.findViewById(R.id.inputEmail)
         inputUrl = v.findViewById(R.id.inputUrl)
-        btnAdd = v.findViewById(R.id.btnDBAdd)
+        btnAdd = v.findViewById(R.id.btnRecovery)
 
         return v
     }
