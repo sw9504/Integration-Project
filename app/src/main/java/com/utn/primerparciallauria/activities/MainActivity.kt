@@ -19,5 +19,4 @@ class MainActivity : AppCompatActivity() {
         bottomNavView = findViewById(R.id.bottomBar)
         NavigationUI.setupWithNavController(bottomNavView, navHostFragment.navController)
     }
-    val args = Bundle()
 }

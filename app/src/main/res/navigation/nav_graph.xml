@@ -51,7 +51,11 @@
         android:id="@+id/profileFragment"
         android:name="com.utn.primerparciallauria.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_settingsActivity"
+            app:destination="@id/settingsActivity" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.utn.primerparciallauria.fragments.LoginFragment"
@@ -81,4 +85,9 @@
             android:id="@+id/action_createAccFragment_to_listFragment"
             app:destination="@id/listFragment" />
     </fragment>
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="com.utn.primerparciallauria.activities.SettingsActivity"
+        android:label="activity_settings"
+        tools:layout="@layout/activity_settings" />
 </navigation>

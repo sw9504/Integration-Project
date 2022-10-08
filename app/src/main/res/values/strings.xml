@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">primerParcialLauria</string>
+    <string name="app_name">HoTD App</string>
     <string name="txtRecovery"><u>Password recovery.</u></string>
     <string name="txtCreateAcc"><u>Create Account.</u></string>
 
