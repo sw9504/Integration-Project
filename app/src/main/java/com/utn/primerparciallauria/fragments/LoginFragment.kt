@@ -1,5 +1,7 @@
 package com.utn.primerparciallauria.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -89,5 +91,4 @@ class LoginFragment : Fragment() {
             v.findNavController().navigate(action)
         }
     }
-
 }

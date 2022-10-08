@@ -60,6 +60,13 @@ class ListFragment : Fragment() {
             var userId = ListFragmentArgs.fromBundle(requireArguments()).userId
             characterList = characterDao?.loadAllCharacters(userId) as MutableList<Character>
 
+            // Uso shared preferences para guardar el userId
+            val sharedPref : SharedPreferences = requireContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+            editor.putInt("userId",userId)
+            editor.apply()
+            ///
+
             // Adapter para recyclerview
             adapter = CharacterAdapter(characterList) { position ->
                 var action = ListFragmentDirections.actionListFragmentToExpandedFragment(characterList[position].characterId)
