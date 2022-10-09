@@ -1,5 +1,7 @@
 package com.utn.primerparciallauria.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -56,13 +58,17 @@ class CreateAccFragment : Fragment() {
             var password = inputPassword.text.toString()
 
             var defaultBio = "Welcome to the House of the Dragon."
-            var defaultUrl = "https://www.interstatedevelopment.com/wp-content/uploads/2019/04/generic-avatar-1.jpg"
+            var defaultUrl = "https://cdn-icons-png.flaticon.com/512/929/929493.png?w=360"
 
             userDao?.addUser(name,email,password,defaultBio,defaultUrl)
 
             var userId = userDao?.getUserId(email) as Int
-            var action = CreateAccFragmentDirections.actionCreateAccFragmentToListFragment(userId)
+            val sharedPref : SharedPreferences = requireContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+            editor.putInt("userId",userId)
+            editor.apply()
 
+            var action = CreateAccFragmentDirections.actionCreateAccFragmentToListFragment()
             v.findNavController().navigate(action)
         }
 

@@ -8,7 +8,6 @@
     android:background="#7B5AB6"
     tools:context=".fragments.LoginFragment">
 
-
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="wrap_content"

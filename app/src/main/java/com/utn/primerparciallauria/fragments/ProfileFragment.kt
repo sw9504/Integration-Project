@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.utn.primerparciallauria.R
@@ -64,7 +66,7 @@ class ProfileFragment : Fragment() {
             .into(imgAvatar)
 
         btnSettings.setOnClickListener {
-            var action = ProfileFragmentDirections.actionProfileFragmentToSettingsActivity()
+            val action = ProfileFragmentDirections.actionProfileFragmentToSettingsActivity()
             v.findNavController().navigate(action)
         }
 

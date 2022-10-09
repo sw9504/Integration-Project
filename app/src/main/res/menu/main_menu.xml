@@ -4,9 +4,8 @@
         android:id="@+id/listFragment"
         android:title="My List"
         android:icon="@drawable/my_list"/>
-
     <item
         android:id="@+id/profileFragment"
         android:title="My Profile"
-        android:icon="@drawable/my_profile"/>
+        android:icon="@drawable/my_profile" />
 </menu>

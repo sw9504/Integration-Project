@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -57,14 +59,22 @@ class ListFragment : Fragment() {
 
             // Traigo aquellas filas que se correspondan con el userId
             // del usuario que se loguea en LoginFragment
-            var userId = ListFragmentArgs.fromBundle(requireArguments()).userId
+
+            // No puedo usar argumentos con popUpTo
+            // var userId = ListFragmentArgs.fromBundle(requireArguments()).userId
+
+            // Load userId through Shared Preferences
+            val sharedPref : SharedPreferences = requireContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+            val userId : Int = sharedPref.getInt("userId",0)
             characterList = characterDao?.loadAllCharacters(userId) as MutableList<Character>
 
             // Uso shared preferences para guardar el userId
+            /*
             val sharedPref : SharedPreferences = requireContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE)
             val editor = sharedPref.edit()
             editor.putInt("userId",userId)
             editor.apply()
+            */
             ///
 
             // Adapter para recyclerview

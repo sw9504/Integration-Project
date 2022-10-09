@@ -8,15 +8,13 @@
         android:id="@+id/listFragment"
         android:name="com.utn.primerparciallauria.fragments.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" >
+        tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_newCharacterFragment"
             app:destination="@id/newCharacterFragment" />
         <action
             android:id="@+id/action_listFragment_to_expandedFragment"
             app:destination="@id/expandedFragment" />
-        <argument android:name="userId"
-            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/newCharacterFragment"
@@ -48,28 +46,21 @@
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.utn.primerparciallauria.fragments.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_settingsActivity"
-            app:destination="@id/settingsActivity" />
-    </fragment>
-    <fragment
         android:id="@+id/loginFragment"
         android:name="com.utn.primerparciallauria.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_listFragment"
-            app:destination="@id/listFragment" />
         <action
             android:id="@+id/action_loginFragment_to_recoveryFragment"
             app:destination="@id/recoveryFragment" />
         <action
             android:id="@+id/action_loginFragment_to_createAccFragment"
             app:destination="@id/createAccFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_listFragment"
+            app:destination="@id/listFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/recoveryFragment"
@@ -84,6 +75,15 @@
         <action
             android:id="@+id/action_createAccFragment_to_listFragment"
             app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.utn.primerparciallauria.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_settingsActivity"
+            app:destination="@id/settingsActivity" />
     </fragment>
     <activity
         android:id="@+id/settingsActivity"

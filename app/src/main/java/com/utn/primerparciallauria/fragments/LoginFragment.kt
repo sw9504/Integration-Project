@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.utn.primerparciallauria.R
@@ -75,8 +76,18 @@ class LoginFragment : Fragment() {
                 Snackbar.make(it,"Datos incorrectos", Snackbar.LENGTH_SHORT).show()
             else {
                 Snackbar.make(it,"Autenticado", Snackbar.LENGTH_SHORT).show()
+
                 var userId = userDao?.getUserId(email) as Int
-                val action = LoginFragmentDirections.actionLoginFragmentToListFragment(userId)
+
+                // Using popUpto can't apply arguments on ListFragment.kt
+                //val action = LoginFragmentDirections.actionLoginFragmentToListFragment(userId)
+
+                val sharedPref : SharedPreferences = requireContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE)
+                val editor = sharedPref.edit()
+                editor.putInt("userId",userId)
+                editor.apply()
+
+                val action = LoginFragmentDirections.actionLoginFragmentToListFragment()
                 v.findNavController().navigate(action)
             }
         }
