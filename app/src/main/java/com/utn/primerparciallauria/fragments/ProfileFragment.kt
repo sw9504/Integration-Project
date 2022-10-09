@@ -8,18 +8,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.utn.primerparciallauria.R
 import com.utn.primerparciallauria.database.appDatabase
-import com.utn.primerparciallauria.database.characterDao
 import com.utn.primerparciallauria.database.userDao
 import com.utn.primerparciallauria.entities.User
 
 class ProfileFragment : Fragment() {
     lateinit var v : View
-    lateinit var txtLogUser : TextView
+    lateinit var txtUserName : TextView
+    lateinit var imgAvatar : ImageView
+    lateinit var txtBio : TextView
     lateinit var btnSettings : Button
+    lateinit var btnLogOut : Button
+
 
     private var db: appDatabase? = null
     private var userDao: userDao? = null
@@ -30,8 +35,11 @@ class ProfileFragment : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_profile, container, false)
 
+        txtUserName = v.findViewById(R.id.txtUserName)
+        txtBio= v.findViewById(R.id.txtBio)
+        imgAvatar = v.findViewById(R.id.imgAvatar)
         btnSettings = v.findViewById(R.id.btnSettings)
-        txtLogUser = v.findViewById(R.id.txtLogUser)
+        btnLogOut = v.findViewById(R.id.btnLogOut)
 
         return v
     }
@@ -47,11 +55,21 @@ class ProfileFragment : Fragment() {
         userDao = db?.userDao()
         val user = userDao?.getUser(userId) as User
 
-        txtLogUser.text = user.name
+        txtUserName.text = user.name
+        txtBio.text = user.bio
+
+        Glide.with(requireContext())
+            .load(user.imgAvatar)
+            .circleCrop()
+            .into(imgAvatar)
 
         btnSettings.setOnClickListener {
             var action = ProfileFragmentDirections.actionProfileFragmentToSettingsActivity()
             v.findNavController().navigate(action)
+        }
+
+        btnLogOut.setOnClickListener {
+
         }
     }
 }

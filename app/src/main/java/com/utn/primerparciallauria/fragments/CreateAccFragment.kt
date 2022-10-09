@@ -55,9 +55,14 @@ class CreateAccFragment : Fragment() {
             var email = inputEmail.text.toString()
             var password = inputPassword.text.toString()
 
-            userDao?.addUser(name,email,password,"")
+            var defaultBio = "Welcome to the House of the Dragon."
+            var defaultUrl = "https://www.interstatedevelopment.com/wp-content/uploads/2019/04/generic-avatar-1.jpg"
+
+            userDao?.addUser(name,email,password,defaultBio,defaultUrl)
+
             var userId = userDao?.getUserId(email) as Int
             var action = CreateAccFragmentDirections.actionCreateAccFragmentToListFragment(userId)
+
             v.findNavController().navigate(action)
         }
 

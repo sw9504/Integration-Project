@@ -8,6 +8,19 @@
     android:background="#7B5AB6"
     tools:context=".fragments.RecoveryFragment">
 
+    <ImageView
+        android:id="@+id/imgLogo3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="168dp"
+        android:src="@drawable/hotd"
+        app:layout_constraintBottom_toTopOf="@id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.842" />
+
     <EditText
         android:id="@+id/inputEmail"
         android:layout_width="wrap_content"
@@ -38,13 +51,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="270dp" />
+        app:layout_constraintGuide_begin="326dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="270dp" />
+        app:layout_constraintGuide_end="201dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
