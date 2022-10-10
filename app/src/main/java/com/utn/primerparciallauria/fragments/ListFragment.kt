@@ -1,6 +1,7 @@
 package com.utn.primerparciallauria.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -9,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -18,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.utn.primerparciallauria.R
+import com.utn.primerparciallauria.activities.MainActivity
 import com.utn.primerparciallauria.adapters.CharacterAdapter
 import com.utn.primerparciallauria.database.appDatabase
 import com.utn.primerparciallauria.database.characterDao
@@ -93,5 +97,14 @@ class ListFragment : Fragment() {
                 var action = ListFragmentDirections.actionListFragmentToNewCharacterFragment(userId)
                 v.findNavController().navigate(action)
             }
+
+            requireActivity().onBackPressedDispatcher.addCallback(
+                this,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        activity?.finish()
+                    }
+                }
+            )
         }
 }
