@@ -4,7 +4,6 @@
     android:id="@+id/linearLayoutCompat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7B5AB6"
     tools:context=".activities.SettingsActivity">
 
     <androidx.fragment.app.FragmentContainerView

@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="Background color">
-
+    <PreferenceCategory android:title="Application Settings">
         <SwitchPreference
-            android:defaultValue="false"
-            android:key="swPref1"
-            android:title="Dark Mode" />
-        <EditTextPreference
-            android:defaultValue="Default value"
-            android:key="editText1"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:title="Sample Text" />
-    </PreferenceCategory>
+            android:defaultValue="true"
+            android:key="circleAvatar"
+            android:title="Enable circle avatar" />
 
-    <PreferenceCategory android:title="Management">
         <ListPreference
-            android:defaultValue="reply"
-            android:entries="@array/reply_entries"
-            android:entryValues="@array/reply_values"
-            android:key="reply"
-            android:title="Default reply action" />
+            android:key="colorList"
+            android:title="Background color"
+            android:entries="@array/color_entries"
+            android:entryValues="@array/color_values"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="Purple"
+            />
     </PreferenceCategory>
-
-
 </PreferenceScreen>

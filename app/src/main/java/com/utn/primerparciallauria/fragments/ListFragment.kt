@@ -54,6 +54,8 @@ class ListFragment : Fragment() {
 
         override fun onStart() {
             super.onStart()
+
+
             db = appDatabase.getAppDataBase(v.context)
             characterDao = db?.characterDao()
 

@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar"></style>
+
+    <style name="PurpleTheme" parent="Theme.PrimerParcialLauriaa">
+            <item name="android:windowBackground">@color/ic_background</item>
+    </style>
+
+    <style name="WhiteTheme" parent="Theme.PrimerParcialLauriaa">
+        <item name="android:windowBackground">@color/backgroundWhite</item>
+    </style>
+
+    <style name="GrayTheme" parent="Theme.PrimerParcialLauriaa">
+        <item name="android:windowBackground">@color/backgroundGray</item>
+    </style>
+
 </resources>
