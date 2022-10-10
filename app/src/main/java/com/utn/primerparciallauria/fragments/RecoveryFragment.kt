@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.utn.primerparciallauria.R
 import com.utn.primerparciallauria.database.appDatabase
-import com.utn.primerparciallauria.database.characterDao
 import com.utn.primerparciallauria.database.userDao
 import com.utn.primerparciallauria.entities.User
 

@@ -1,23 +1,25 @@
 package com.utn.primerparciallauria.fragments
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.utn.primerparciallauria.R
+import com.utn.primerparciallauria.activities.MainActivity
 import com.utn.primerparciallauria.database.appDatabase
 import com.utn.primerparciallauria.database.userDao
 import com.utn.primerparciallauria.entities.User
+
 
 class ProfileFragment : Fragment() {
     lateinit var v : View
@@ -71,7 +73,23 @@ class ProfileFragment : Fragment() {
         }
 
         btnLogOut.setOnClickListener {
+            var loginPref : SharedPreferences = requireContext().getSharedPreferences("loginPref",Context.MODE_PRIVATE)
+            val editor = loginPref.edit()
+            editor.putBoolean("isLogged",false)
+            editor.apply()
 
+            // Go to LoginFragment with no back stack
+            val intent = Intent(activity, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            activity?.finish()
+
+            // Go to LoginFragment with no back stack using action doesn't work
+            // I solved disabling action and using intent to MainActivity
+            /*val action = ProfileFragmentDirections.actionProfileFragmentToLoginFragment()
+            v.findNavController().navigate(action)*/
         }
     }
 }
