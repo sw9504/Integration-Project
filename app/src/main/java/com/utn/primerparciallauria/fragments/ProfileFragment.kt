@@ -73,6 +73,11 @@ class ProfileFragment : Fragment() {
         else
             Glide.with(requireContext()).load(user.imgAvatar).into(imgAvatar)
 
+        imgAvatar.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToAvatarFragment(userId)
+            v.findNavController().navigate(action)
+        }
+
         btnSettings.setOnClickListener {
             val action = ProfileFragmentDirections.actionProfileFragmentToSettingsActivity()
             v.findNavController().navigate(action)
@@ -91,11 +96,6 @@ class ProfileFragment : Fragment() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent,null)
             activity?.finish()
-
-            // Go to LoginFragment with no back stack using action doesn't work
-            // I solved disabling action and using intent to MainActivity
-            /*val action = ProfileFragmentDirections.actionProfileFragmentToLoginFragment()
-            v.findNavController().navigate(action)*/
         }
     }
 }

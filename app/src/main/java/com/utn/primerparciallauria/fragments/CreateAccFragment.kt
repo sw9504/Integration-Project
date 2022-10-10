@@ -38,7 +38,7 @@ class CreateAccFragment : Fragment() {
         view.visibility = View.INVISIBLE
 
         inputName = v.findViewById(R.id.inputName)
-        inputEmail = v.findViewById(R.id.inputEmail)
+        inputEmail = v.findViewById(R.id.inputCharacter)
         inputPassword = v.findViewById(R.id.inputPassword)
         btnCreate = v.findViewById(R.id.btnCreate)
 
@@ -62,11 +62,18 @@ class CreateAccFragment : Fragment() {
 
             userDao?.addUser(name,email,password,defaultBio,defaultUrl)
 
+            // USe shared preferenced to store logged userId
             var userId = userDao?.getUserId(email) as Int
             val sharedPref : SharedPreferences = requireContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE)
             val editor = sharedPref.edit()
             editor.putInt("userId",userId)
             editor.apply()
+
+            // Disable login screen after account created
+            var loginPref : SharedPreferences = requireContext().getSharedPreferences("loginPref", Context.MODE_WORLD_WRITEABLE)
+            val logEditor = loginPref.edit()
+            logEditor.putBoolean("isLogged",true)
+            logEditor.apply()
 
             var action = CreateAccFragmentDirections.actionCreateAccFragmentToListFragment()
             v.findNavController().navigate(action)

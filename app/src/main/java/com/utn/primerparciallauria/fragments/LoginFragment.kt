@@ -65,10 +65,8 @@ class LoginFragment : Fragment() {
         db = appDatabase.getAppDataBase(v.context)
         userDao = db?.userDao()
 
-
         // Bypass login Screen with shared preferences
-        var loginPref : SharedPreferences = requireContext().getSharedPreferences("loginPref",
-            Context.MODE_WORLD_WRITEABLE)
+        var loginPref : SharedPreferences = requireContext().getSharedPreferences("loginPref", Context.MODE_WORLD_WRITEABLE)
         val isLogged : Boolean = loginPref.getBoolean("isLogged",false)
 
         if(isLogged) {

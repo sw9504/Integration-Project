@@ -32,7 +32,7 @@ class EditFragment : Fragment() {
         val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
         view.visibility = View.GONE
 
-        inputName = v.findViewById(R.id.inputEmail)
+        inputName = v.findViewById(R.id.inputCharacter)
         inputUrl = v.findViewById(R.id.inputUrl)
         btnAdd = v.findViewById(R.id.btnRecovery)
 

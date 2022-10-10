@@ -5,14 +5,14 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.NewCharacterFragment">
+    tools:context=".fragments.AvatarFragment">
 
     <EditText
-        android:id="@+id/inputCharacter"
+        android:id="@+id/inputBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Input character name"
+        android:hint="Input your bio"
         android:inputType="textPersonName"
 
         app:layout_constraintBottom_toTopOf="@id/inputUrl"
@@ -25,21 +25,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Insert url image"
+        android:hint="Insert url avatar"
         android:inputType="textPersonName"
 
-        app:layout_constraintBottom_toTopOf="@id/btnRecovery"
+        app:layout_constraintBottom_toTopOf="@id/btnUpdate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputCharacter" />
+        app:layout_constraintTop_toBottomOf="@id/inputBio" />
 
     <Button
-        android:id="@+id/btnRecovery"
+        android:id="@+id/btnUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#000000"
-        android:text="ADD"
-        android:textColor="#F6F2F2"
+        android:text="Update"
+        android:textColor="#FFFF"
         app:layout_constraintBottom_toBottomOf="@id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

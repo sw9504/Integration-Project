@@ -85,10 +85,22 @@
         <action
             android:id="@+id/action_profileFragment_to_settingsActivity"
             app:destination="@id/settingsActivity" />
+        <action
+            android:id="@+id/action_profileFragment_to_avatarFragment"
+            app:destination="@id/avatarFragment" />
     </fragment>
     <activity
         android:id="@+id/settingsActivity"
         android:name="com.utn.primerparciallauria.activities.SettingsActivity"
         android:label="activity_settings"
         tools:layout="@layout/activity_settings" />
+    <fragment
+        android:id="@+id/avatarFragment"
+        android:name="com.utn.primerparciallauria.fragments.AvatarFragment"
+        android:label="fragment_avatar"
+        tools:layout="@layout/fragment_avatar" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

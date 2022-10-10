@@ -27,7 +27,7 @@ class RecoveryFragment : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_recovery, container, false)
 
-        inputEmail = v.findViewById(R.id.inputEmail)
+        inputEmail = v.findViewById(R.id.inputCharacter)
         btnRecovery = v.findViewById(R.id.btnRecovery)
 
         return v

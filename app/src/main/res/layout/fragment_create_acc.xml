@@ -30,11 +30,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horizontal1"
-        app:layout_constraintBottom_toTopOf="@id/inputEmail"
+        app:layout_constraintBottom_toTopOf="@id/inputCharacter"
         />
 
     <EditText
-        android:id="@+id/inputEmail"
+        android:id="@+id/inputCharacter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -56,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@id/inputEmail"
+        app:layout_constraintTop_toBottomOf="@id/inputCharacter"
         app:layout_constraintBottom_toTopOf="@id/btnCreate"  />
 
     <Button

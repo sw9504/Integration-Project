@@ -59,29 +59,14 @@ class ListFragment : Fragment() {
         override fun onStart() {
             super.onStart()
 
-
             db = appDatabase.getAppDataBase(v.context)
             characterDao = db?.characterDao()
 
             // Traigo aquellas filas que se correspondan con el userId
             // del usuario que se loguea en LoginFragment
-
-            // No puedo usar argumentos con popUpTo
-            // var userId = ListFragmentArgs.fromBundle(requireArguments()).userId
-
-            // Load userId through Shared Preferences
             val sharedPref : SharedPreferences = requireContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
             val userId : Int = sharedPref.getInt("userId",0)
             characterList = characterDao?.loadAllCharacters(userId) as MutableList<Character>
-
-            // Uso shared preferences para guardar el userId
-            /*
-            val sharedPref : SharedPreferences = requireContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE)
-            val editor = sharedPref.edit()
-            editor.putInt("userId",userId)
-            editor.apply()
-            */
-            ///
 
             // Adapter para recyclerview
             adapter = CharacterAdapter(characterList) { position ->
@@ -92,12 +77,13 @@ class ListFragment : Fragment() {
             recCharacter.adapter = adapter
             //////////////////////////////
 
-            // Boton para agregrar personajes.
+            // Button to add characters
             btnAdd.setOnClickListener {
                 var action = ListFragmentDirections.actionListFragmentToNewCharacterFragment(userId)
                 v.findNavController().navigate(action)
             }
 
+            // Back press callback to exit app on List
             requireActivity().onBackPressedDispatcher.addCallback(
                 this,
                 object : OnBackPressedCallback(true) {

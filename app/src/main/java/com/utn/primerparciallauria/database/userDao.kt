@@ -19,4 +19,8 @@ public interface userDao {
 
     @Query("SELECT password FROM users WHERE email = :email")
     fun getUserPass(email : String) : String
+
+    @Query("UPDATE users SET bio = :bio, imgAvatar = :imgAvatar WHERE userId = :userId")
+    fun updateUserProfile(userId : Int, bio : String, imgAvatar : String)
+
 }

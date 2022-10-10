@@ -8,50 +8,53 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.navigation.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.utn.primerparciallauria.R
 import com.utn.primerparciallauria.database.appDatabase
 import com.utn.primerparciallauria.database.characterDao
+import com.utn.primerparciallauria.database.userDao
+import com.utn.primerparciallauria.entities.Character
+import com.utn.primerparciallauria.entities.User
 
-class NewCharacterFragment : Fragment() {
+class AvatarFragment : Fragment() {
     lateinit var v : View
-    lateinit var inputName : EditText
+    lateinit var inputBio : EditText
     lateinit var inputUrl : EditText
-    lateinit var btnAdd : Button
+    lateinit var btnUpdate : Button
 
     private var db: appDatabase? = null
-    private var characterDao: characterDao? = null
+    private var userDao: userDao? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v =  inflater.inflate(R.layout.fragment_new_character, container, false)
+        v = inflater.inflate(R.layout.fragment_avatar, container, false)
 
-        val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
-        view.visibility = View.GONE
-
-        inputName = v.findViewById(R.id.inputCharacter)
+        inputBio = v.findViewById(R.id.inputBio)
         inputUrl = v.findViewById(R.id.inputUrl)
-        btnAdd = v.findViewById(R.id.btnRecovery)
+        btnUpdate = v.findViewById(R.id.btnUpdate)
 
         return v
     }
 
     override fun onStart() {
         super.onStart()
+
         db = appDatabase.getAppDataBase(v.context)
-        characterDao = db?.characterDao()
+        userDao = db?.userDao()
 
-        var userId = NewCharacterFragmentArgs.fromBundle(requireArguments()).userId
+        var userId = AvatarFragmentArgs.fromBundle(requireArguments()).userId
+        var user = userDao?.getUser(userId) as User
 
-        btnAdd.setOnClickListener {
-            val name = inputName.text
-            val url = inputUrl.text
+        inputBio.setText(user.bio)
+        inputUrl.setText(user.imgAvatar)
 
-            characterDao?.addCharacter(userId, name.toString(),url.toString())
+        btnUpdate.setOnClickListener {
+            val bio = inputBio.text.toString()
+            val url = inputUrl.text.toString()
+            userDao?.updateUserProfile(userId,bio,url)
             v.findNavController().navigateUp()
         }
-
     }
+
 }
