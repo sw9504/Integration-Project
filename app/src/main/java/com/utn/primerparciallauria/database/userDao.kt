@@ -23,4 +23,6 @@ public interface userDao {
     @Query("UPDATE users SET bio = :bio, imgAvatar = :imgAvatar WHERE userId = :userId")
     fun updateUserProfile(userId : Int, bio : String, imgAvatar : String)
 
+    @Query("SELECT email FROM users WHERE email = :email")
+    fun checkEmail (email : String) : String?
 }

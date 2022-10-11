@@ -1,6 +1,8 @@
 package com.utn.primerparciallauria.fragments
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,10 +14,11 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.utn.primerparciallauria.R
+import com.utn.primerparciallauria.activities.MainActivity
 import com.utn.primerparciallauria.database.appDatabase
 import com.utn.primerparciallauria.database.characterDao
-import com.utn.primerparciallauria.database.userDao
 import com.utn.primerparciallauria.entities.Character
 
 class ExpandedFragment : Fragment() {
@@ -57,8 +60,10 @@ class ExpandedFragment : Fragment() {
 
         characterName.text = character.name
 
+        var errorUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYFj79aNLmv5KujpGMVF2_BSbHG2-H_XaCew&usqp=CAU"
         Glide.with(requireContext())
             .load(character.imgAvatar)
+            .error(errorUrl)
             .into(img)
 
         btnEdit.setOnClickListener {
@@ -67,8 +72,19 @@ class ExpandedFragment : Fragment() {
         }
 
         btnDelete.setOnClickListener {
-            characterDao?.deleteCharacter(characterId)
-            v.findNavController().navigateUp()
+            // Dialog for Logout confirmation.
+            // Use material design library
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Delete character")
+                .setMessage("Are you sure you want to delete ${character.name}?")
+                .setNegativeButton("NO") { dialog, which ->
+                    // Nothing
+                }
+                .setPositiveButton("YES") { dialog, which ->
+                    characterDao?.deleteCharacter(characterId)
+                    v.findNavController().navigateUp()
+                }
+                .show()
         }
     }
 }

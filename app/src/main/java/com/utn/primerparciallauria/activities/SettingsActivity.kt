@@ -7,15 +7,13 @@ import androidx.activity.OnBackPressedCallback
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.utn.primerparciallauria.R
-import com.utn.primerparciallauria.fragments.ProfileFragment
 
 class SettingsActivity : AppCompatActivity() {
-    lateinit var prevColor : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val settings = PreferenceManager.getDefaultSharedPreferences(this)
-        val colorList = settings.getString("colorList","purple")
+        val colorList = settings.getString("colorList","Purple")
 
         when(colorList){
             "PurpleTheme" -> setTheme(R.style.PurpleTheme)
@@ -39,7 +37,7 @@ class SettingsActivity : AppCompatActivity() {
         override fun onStart() {
             super.onStart()
             val settings = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            val prevColor = settings.getString("colorList","purple")
+            val prevColor = settings.getString("colorList","Purple")
 
             // Use back press call back to update theme change
             requireActivity().onBackPressedDispatcher.addCallback(
@@ -47,7 +45,7 @@ class SettingsActivity : AppCompatActivity() {
                 object : OnBackPressedCallback(true) {
                     override fun handleOnBackPressed() {
                         // Custom back pressed
-                        if (prevColor != settings.getString("colorList","purple")){
+                        if (prevColor != settings.getString("colorList","Purple")){
                             val intent = Intent(activity, MainActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

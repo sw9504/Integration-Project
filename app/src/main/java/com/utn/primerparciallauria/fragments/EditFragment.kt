@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.utn.primerparciallauria.R
 import com.utn.primerparciallauria.database.appDatabase
 import com.utn.primerparciallauria.database.characterDao
@@ -16,6 +17,10 @@ import com.utn.primerparciallauria.entities.Character
 
 class EditFragment : Fragment() {
     lateinit var v : View
+
+    private var NAME_MIN_LENGTH = 4
+    private var NAME_MAX_LENGTH = 25
+
     lateinit var inputName : EditText
     lateinit var inputUrl : EditText
     lateinit var btnAdd : Button
@@ -29,6 +34,7 @@ class EditFragment : Fragment() {
     ): View? {
         v =  inflater.inflate(R.layout.fragment_edit, container, false)
 
+        // Disable bottom bar
         val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
         view.visibility = View.GONE
 
@@ -51,12 +57,33 @@ class EditFragment : Fragment() {
         inputName.setText(character.name)
         inputUrl.setText(character.imgAvatar)
 
-        btnAdd.setOnClickListener {
-            val name = inputName.text
-            val url = inputUrl.text
 
-            characterDao?.updateCharacter(characterId,name.toString(),url.toString())
-            v.findNavController().navigateUp()
+        btnAdd.setOnClickListener {
+            val name = inputName.text.toString()
+            val url = inputUrl.text.toString()
+
+            if (!checkInputLength(name,NAME_MIN_LENGTH,NAME_MAX_LENGTH)) {
+                Snackbar.make(it,"Name must be between $NAME_MIN_LENGTH-$NAME_MAX_LENGTH character.", Snackbar.LENGTH_SHORT).show()
+            }
+            else if (!checkImageUrl(url)) {
+                Snackbar.make(it,"Invalid image url.", Snackbar.LENGTH_SHORT).show()
+            }
+            else{
+                characterDao?.updateCharacter(characterId,name,url)
+                v.findNavController().navigateUp()
+            }
         }
+    }
+
+    private fun checkInputLength (input : String, minLength : Int, maxLength : Int) : Boolean {
+        return input.length in minLength..maxLength
+    }
+
+    private fun checkImageUrl (url : String) : Boolean {
+        if (url != "" && url != null) {
+            // Some code to check if url is a img file
+            return true
+        }
+        return false
     }
 }

@@ -4,14 +4,15 @@
 
     <style name="PurpleTheme" parent="Theme.PrimerParcialLauriaa">
             <item name="android:windowBackground">@color/ic_background</item>
+
     </style>
 
     <style name="WhiteTheme" parent="Theme.PrimerParcialLauriaa">
         <item name="android:windowBackground">@color/backgroundWhite</item>
+
     </style>
 
     <style name="GrayTheme" parent="Theme.PrimerParcialLauriaa">
         <item name="android:windowBackground">@color/backgroundGray</item>
     </style>
-
 </resources>

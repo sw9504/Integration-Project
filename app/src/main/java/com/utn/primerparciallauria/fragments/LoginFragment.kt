@@ -1,8 +1,6 @@
 package com.utn.primerparciallauria.fragments
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,17 +10,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.utn.primerparciallauria.R
 import com.utn.primerparciallauria.database.appDatabase
 import com.utn.primerparciallauria.database.userDao
 import com.utn.primerparciallauria.entities.User
-import androidx.appcompat.app.AppCompatActivity
-import com.utn.primerparciallauria.activities.MainActivity
 
 class LoginFragment : Fragment() {
 
@@ -85,9 +79,9 @@ class LoginFragment : Fragment() {
                 }
 
                 if (newList.isEmpty())
-                    Snackbar.make(it,"Datos incorrectos", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(it,"Incorrect email/password.", Snackbar.LENGTH_SHORT).show()
                 else {
-                    Snackbar.make(it,"Autenticado", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(it,"Autenticated.", Snackbar.LENGTH_SHORT).show()
 
                     var userId = userDao?.getUserId(email) as Int
 

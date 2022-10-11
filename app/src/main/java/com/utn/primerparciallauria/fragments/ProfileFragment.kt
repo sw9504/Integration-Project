@@ -3,7 +3,6 @@ package com.utn.primerparciallauria.fragments
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +10,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.preference.PreferenceManager
 import com.bumptech.glide.Glide
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.utn.primerparciallauria.R
 import com.utn.primerparciallauria.activities.MainActivity
 import com.utn.primerparciallauria.database.appDatabase
@@ -68,10 +66,12 @@ class ProfileFragment : Fragment() {
         txtUserName.text = user.name
         txtBio.text = user.bio
 
+        var errorUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYFj79aNLmv5KujpGMVF2_BSbHG2-H_XaCew&usqp=CAU"
+
         if (circleAvatar)
-            Glide.with(requireContext()).load(user.imgAvatar).circleCrop().into(imgAvatar)
+            Glide.with(requireContext()).load(user.imgAvatar).circleCrop().error(errorUrl).into(imgAvatar)
         else
-            Glide.with(requireContext()).load(user.imgAvatar).into(imgAvatar)
+            Glide.with(requireContext()).load(user.imgAvatar).error(errorUrl).into(imgAvatar)
 
         imgAvatar.setOnClickListener {
             val action = ProfileFragmentDirections.actionProfileFragmentToAvatarFragment(userId)
@@ -84,18 +84,29 @@ class ProfileFragment : Fragment() {
         }
 
         btnLogOut.setOnClickListener {
-            var loginPref : SharedPreferences = requireContext().getSharedPreferences("loginPref",Context.MODE_PRIVATE)
-            val editor = loginPref.edit()
-            editor.putBoolean("isLogged",false)
-            editor.apply()
+            // Dialog for Logout confirmation.
+            // Use material design library
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to Logout?")
+                .setNegativeButton("NO") { dialog, which ->
+                    // Nothing
+                }
+                .setPositiveButton("YES") { dialog, which ->
+                    var loginPref : SharedPreferences = requireContext().getSharedPreferences("loginPref",Context.MODE_PRIVATE)
+                    val editor = loginPref.edit()
+                    editor.putBoolean("isLogged",false)
+                    editor.apply()
 
-            // Go to LoginFragment with no back stack
-            val intent = Intent(activity, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent,null)
-            activity?.finish()
+                    // Go to LoginFragment with no back stack
+                    val intent = Intent(activity, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent,null)
+                    activity?.finish()
+                }
+                .show()
         }
     }
 }

@@ -28,10 +28,12 @@ class CharacterAdapter(private var characterList : MutableList <Character>,
         fun setImg (img : String) {
             var imgCircle: ImageView = view.findViewById((R.id.imgCircle))
             var imgUrl = img
+            var errorUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYFj79aNLmv5KujpGMVF2_BSbHG2-H_XaCew&usqp=CAU"
 
             Glide.with(view)
                 .load(imgUrl)
                 .circleCrop()
+                .error(errorUrl)
                 .into(imgCircle)
         }
 
